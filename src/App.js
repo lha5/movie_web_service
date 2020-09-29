@@ -19,16 +19,15 @@ class App extends React.Component {
     }
 
     getMovies = async () => {
-        const key = 'fd3ee98997f6340648c4df3bc4e3c17d';
-        //const dateToday = this.getFormatDate(new Date());
+        const key = '0f964f1c444c706954dd15c2853e5d97';
         const {
           data: {
-              movieListResult: {
-                  movieList
-              }
+              results:movieList
           }
-        } = await axios.get('http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key='+key);
+        } = await axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key='+key+'&language=ko&page=1&region=KR');
+        console.log(movieList);
         this.setState({movieList, isLoading: false});
+        // console.log(await axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key='+key+'&language=ko&page=1&region=KR'));
     }
 
     componentDidMount() {
@@ -41,12 +40,11 @@ class App extends React.Component {
             return (
                 <Movie
                     key={index}
-                    movieCd={Number.parseInt(movie.movieCd)}
-                    movieNm={movie.movieNm}
-                    movieNmEn={movie.movieNmEn}
-                    openDt={movie.openDt}
-                    nationAlt={movie.nationAlt}
-                    genreAlt={movie.genreAlt}
+                    id={movie.id}
+                    title={movie.title}
+                    overview={movie.overview}
+                    poster_path={movie.poster_path}
+                    release_date={movie.release_date}
                 />);
         })}</div>
     }
