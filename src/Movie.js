@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Box, Grid} from "grommet";
+import {Box, Image, Text} from "grommet";
 
-function Movie({id, title, overview, poster_path, release_date}) {
-    return <Grid columns={{count: "fill"}}>
-        <Box
-            direction="column"
-            border={{color: 'pink', size: 'xsmall'}}
-            align="center"
-            width="250px"
-            margin="none"
-        >
-            <Box pad="none"><img src={"https://image.tmdb.org/t/p/w200/" + poster_path} alt={title}/></Box>
-            <Box pad="none" background={"light-3"} fill="horizontal">{title}</Box>
-            <Box pad="none" background={"light-3"} fill="horizontal">{release_date}</Box>
-        </Box>
-    </Grid>
+function Movie({title, poster_path, release_date}) {
+    return <Box
+        align="center"
+        background="white"
+        round="small"
+        responsive={true}
+        pad={{horizontal: 'medium'}}
+        margin={{top: 'medium', bottom: 'medium', right: 'medium', left: 'medium'}}
+    >
+        <Box margin="small"><Image src={"https://image.tmdb.org/t/p/w200/" + poster_path} fit="contain"/></Box>
+        <Box><Text weight="bold" textAlign="center">{title}</Text></Box>
+        <Box margin={{bottom: 'small'}}><Text size="small">{release_date}</Text> </Box>
+    </Box>
 }
 
 Movie.propTypes = {

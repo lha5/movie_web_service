@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import './general.css'
-import {Box, Grid} from "grommet";
+import {Box, Footer, Grid, Grommet} from "grommet";
 
 class App extends React.Component {
     state = {
@@ -43,25 +43,21 @@ class App extends React.Component {
         return <Box>
             {
                 isLoading ?
-                <div class="loader">
-                    <span class="loader_text">loading...</span>
+                <div>
+                    <span>loading...</span>
                 </div>
                 : (
-                    <Grid
-                        rows={['xsmall', 'auto']}
-                        columns={['small', 'auto']}
-                        areas={[
-                            {name: 'header', start: [0, 0], end: [1, 0]},
-                            {name: 'nav', start: [0, 1], end: [0, 1]},
-                            {name: 'main', start: [1, 1], end: [1, 1]},
-                        ]}
-                    >
-                        <Box gridArea="header" background="brand"></Box>
-                        <Box gridArea="nav" background="light-2"></Box>
-                        <Box gridArea="main" background="dark-3" pad="medium">
-                            {movie_data}
+                    <Grommet>
+                        <Box background="light-5">
+                            <Grid
+                                columns={{count: 5, size: 'auto'}}
+                                responsive={true}
+                                pad="medium"
+                            >
+                                {movie_data}
+                            </Grid>
                         </Box>
-                    </Grid>
+                    </Grommet>
                 )
             }</Box>
     }
